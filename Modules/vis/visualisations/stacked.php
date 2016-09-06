@@ -63,8 +63,8 @@
   start -= offset * 3600000;
   end -= offset * 3600000;
   
-  var dataA = get_feed_data_DMY(kwhdA,start,end,"daily");
-  var dataB = get_feed_data_DMY(kwhdB,start,end,"daily");
+  var dataA = get_feed_data_DMY(kwhdA,start,end,"daily",0);
+  var dataB = get_feed_data_DMY(kwhdB,start,end,"daily",0);
   
   if (delta==1) {
       var tmpA = [];

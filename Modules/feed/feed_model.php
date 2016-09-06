@@ -477,7 +477,7 @@ class Feed
         return $data;
     }
     
-    public function get_data_DMY($feedid,$start,$end,$mode)
+    public function get_data_DMY($feedid,$start,$end,$mode,$includenow)
     {
         $feedid = (int) $feedid;
         if ($end<=$start) return array('success'=>false, 'message'=>"Request end time before start time");
@@ -490,7 +490,7 @@ class Feed
         $userid = $this->get_field($feedid,"userid");
         $timezone = $this->get_user_timezone($userid);
             
-        $data = $this->EngineClass($engine)->get_data_DMY($feedid,$start,$end,$mode,$timezone);
+        $data = $this->EngineClass($engine)->get_data_DMY($feedid,$start,$end,$mode,$timezone,$includenow);
         return $data;
     }
     
@@ -898,4 +898,3 @@ class Feed
         return $timezone;
     }
 }
-

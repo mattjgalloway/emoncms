@@ -277,7 +277,7 @@ class PHPTimeSeries
         return $data;
     }
     
-    public function get_data_DMY($id,$start,$end,$mode,$timezone) 
+    public function get_data_DMY($id,$start,$end,$mode,$timezone,$includenow) 
     {
         $start = intval($start/1000);
         $end = intval($end/1000);

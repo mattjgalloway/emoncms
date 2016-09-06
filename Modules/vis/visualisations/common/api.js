@@ -27,9 +27,10 @@ function get_feed_data(feedID,start,end,interval,skipmissing,limitinterval){
 }
 
 // Get feed data
-function get_feed_data_DMY(feedID,start,end,mode){
+function get_feed_data_DMY(feedID,start,end,mode,includenow){
   var feedIn = [];
-  var query = "id="+feedID+"&start="+parseInt(start)+"&end="+parseInt(end)+"&mode="+mode;
+  var query = "id="+feedID+"&start="+parseInt(start)+"&end="+parseInt(end)+"&mode="+mode+"&includenow="+includenow;
+  console.log(query);
   if (apikey!="") query+= "&apikey="+apikey;
   $.ajax({                  
     url: path+'feed/data.json',             

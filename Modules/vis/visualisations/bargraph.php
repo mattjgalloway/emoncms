@@ -78,6 +78,9 @@
 
     var mode = urlParams.mode;
     if (mode==undefined || mode=='') mode = false;
+
+    var includenow = urlParams.includenow;
+    if (includenow==undefined || includenow=='') includenow = false;
     
     document.getElementById("textunitD").innerHTML=units;
     document.getElementById("textunitM").innerHTML=units;
@@ -242,7 +245,7 @@
             if (mode==0) {
                 data = get_feed_data(feedid,datastart,dataend,interval,0,1);
             } else {
-                data = get_feed_data_DMY(feedid,datastart,dataend,mode);
+                data = get_feed_data_DMY(feedid,datastart,dataend,mode,includenow);
             }
             
             var out = [];
@@ -380,4 +383,3 @@
         });
     });
 </script>
-

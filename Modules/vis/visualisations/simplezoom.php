@@ -129,7 +129,7 @@
           if (feedlist[i].mode==undefined) {
               feedlist[i].plot.data = get_feed_data(feedlist[i].id,datastart,dataend,interval,1,1);
           } else {
-              feedlist[i].plot.data = get_feed_data_DMY(feedlist[i].id,datastart,dataend,feedlist[i].mode);
+              feedlist[i].plot.data = get_feed_data_DMY(feedlist[i].id,datastart,dataend,feedlist[i].mode,0);
           }
           
           if (feedlist[i].delta==1 && i==1) {

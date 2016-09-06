@@ -84,7 +84,7 @@ function feed_controller()
                         if (isset($_GET['interval'])) {
                             $result = $feed->get_data($feedid,get('start'),get('end'),get('interval'),$skipmissing,$limitinterval);
                         } else if (isset($_GET['mode'])) {
-                            $result = $feed->get_data_DMY($feedid,get('start'),get('end'),get('mode'));
+                            $result = $feed->get_data_DMY($feedid,get('start'),get('end'),get('mode'),get('includenow'));
                         }
                     }
                     else if ($route->action == 'average') {

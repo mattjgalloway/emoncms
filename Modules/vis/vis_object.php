@@ -39,7 +39,8 @@
             array('dp',_("dp"),7,'1'),
             array('scale',_("scale"),6,'1'),
             array('delta',_("delta"),7,'0'),
-            array('mode',_("mode"),7,'0')
+            array('mode',_("mode"),7,'0'),
+            array('includenow',_("includenow"),7,'0')
             )
         ),
         

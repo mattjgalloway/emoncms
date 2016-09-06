@@ -345,7 +345,7 @@ class PHPFina
         return $data;
     }
     
-    public function get_data_DMY($id,$start,$end,$mode,$timezone) 
+    public function get_data_DMY($id,$start,$end,$mode,$timezone,$includenow) 
     {
         if ($mode!="daily" && $mode!="weekly" && $mode!="monthly") return false;
         
@@ -376,6 +376,14 @@ class PHPFina
             
             $pos = round(($time - $meta->start_time) / $meta->interval);
             $value = null;
+            $stop = false;
+            
+            if ($includenow && $pos >= $meta->npoints)
+            {
+                $pos = $meta->npoints - 1;
+                $time = $meta->start_time + ($pos * $meta->interval);
+                $stop = true;
+            }
             
             if ($pos>=0 && $pos < $meta->npoints)
             {
@@ -398,6 +406,10 @@ class PHPFina
             if ($mode=="weekly") $date->modify("+1 week");
             if ($mode=="monthly") $date->modify("+1 month");
             $n++;
+            
+            if ($stop === true) {
+                break;
+            }
         }
         
         fclose($fh);
