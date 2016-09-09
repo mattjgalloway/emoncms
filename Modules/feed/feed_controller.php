@@ -171,6 +171,12 @@ function feed_controller()
             }
             return $result;
             // ----------------------------------------------------------------------------
+        } else if ($route->action == "listdmy") {
+            if ($session['read']) {
+                if (!isset($_GET['userid']) || (isset($_GET['userid']) && $_GET['userid'] == $session['userid'])) return $feed->get_user_feeds_with_dmy($session['userid']);
+                else if (isset($_GET['userid']) && $_GET['userid'] != $session['userid']) return $feed->get_user_public_feeds_with_dmy(get('userid'));
+            }
+            else if (isset($_GET['userid'])) return $feed->get_user_public_feeds_with_dmy(get('userid'));
         } else {
             $feedid = (int) get('id');
             // Actions that operate on a single existing feed that all use the feedid to select:
