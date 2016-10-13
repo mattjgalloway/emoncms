@@ -633,6 +633,13 @@ class Feed
         return $lastvalue['value'];
     }
 
+    public function get_value_at_time($id, $time)
+    {
+        $data = $this->get_data($id, $time, $time + 1000, 1000, 1, 1);
+        if (count($data) > 0) { return $data[0][1]; }
+        else return null;
+    }
+
     public function get_data($feedid,$start,$end,$outinterval,$skipmissing,$limitinterval)
     {
         $feedid = (int) $feedid;

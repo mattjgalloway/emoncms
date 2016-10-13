@@ -83,7 +83,12 @@ function feed_controller()
                 if ($feed->exist($feedid)) {  // if the feed exists
                    $f = $feed->get($feedid);
                    if ($f['public'] || ($session['userid']>0 && $f['userid']==$session['userid'] && $session['read'])) {
-                       $result[$i] = $feed->get_value($feedid); // null is a valid response
+                       if (isset($_GET['time'])) {
+                           $time = get('time');
+                           $result[$i] = $feed->get_value_at_time($feedid, $time);
+                       } else {
+                           $result[$i] = $feed->get_value($feedid); // null is a valid response
+                       }
                    } else { $result[$i] = false; }
                 } else { $result[$i] = false; } // false means feed not found
             }
@@ -188,7 +193,14 @@ function feed_controller()
                 if ($f['public'] || ($session['userid']>0 && $f['userid']==$session['userid'] && $session['read']))
                 {
                     if ($route->action == "timevalue") return $feed->get_timevalue($feedid);
-                    else if ($route->action == "value") return $feed->get_value($feedid); // null is a valid response
+                    else if ($route->action == "value") {
+                       if (isset($_GET['time'])) {
+                           $time = get('time');
+                           $result = $feed->get_value_at_time($feedid, $time);
+                       } else {
+                           $result = $feed->get_value($feedid); // null is a valid response
+                       }
+                    }
                     else if ($route->action == "get") return $feed->get_field($feedid,get('field')); // '/[^\w\s-]/'
                     else if ($route->action == "aget") return $feed->get($feedid);
                     else if ($route->action == "getmeta") return $feed->get_meta($feedid);
